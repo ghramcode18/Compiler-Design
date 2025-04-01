@@ -1,0 +1,56 @@
+import React, { useState } from 'react';
+import './App.css';
+
+function ProductList({ products, onItemClick }) {
+  return (
+    <div className="product-list">
+        {products.map((product, index) => (
+          <div key={index} className="product-item" onClick={() => {onItemClick(product)}}>
+            <h6>{product.name}</h6>
+            <img src={product.image}/>
+          </div>
+        ))}
+    </div>
+  );
+}
+
+function ProductDetails({ selectedProduct }) {
+  return (
+    <div className="product-details">
+      {selectedProduct && (
+        <div className="selected-product">
+          <h2>{selectedProduct.name}</h2>
+          <img src={selectedProduct.image} />
+          <p>{selectedProduct.description}</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default function App() {
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
+  const products = [
+    { name: 'Nike', description: 'Very comfy...but very expensive.....so buy flip flop :)', image:"https://i.imgur.com/zI35rF1.jpeg" },
+    { name: 'adidas', description: 'Some fancy description....blah...blah', image:"https://i.imgur.com/8LfsinS.jpeg" },
+    { name: 'Puma', description: 'hackona matata....this is a description', image:"https://i.imgur.com/szHU9FB.jpeg" },
+  ];
+
+  function handleProductClick (product){
+    setSelectedProduct(product);
+  }
+
+  return (
+    <div className="app-container">
+      <div className="content-container">
+        <div className="product-list-container">
+          <ProductList products={products} onItemClick={handleProductClick} />
+        </div>
+        <div className="product-details-container">
+          <ProductDetails selectedProduct={selectedProduct} />
+        </div>
+      </div>
+    </div>
+  );
+}

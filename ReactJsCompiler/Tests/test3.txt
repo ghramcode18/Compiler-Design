@@ -1,0 +1,19 @@
+import React, { useState } from 'react';
+import './App.css';
+
+export default function App() {
+  const [value, setValue] = useState(0);
+
+function update(){
+  setValue(value+1)
+}
+
+  return (
+    <>
+        <h1>
+          {value}
+        </h1>
+        <button onClick={update}>Click</button>
+  </>
+  );
+}

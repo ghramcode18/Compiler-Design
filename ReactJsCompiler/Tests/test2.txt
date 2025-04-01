@@ -1,0 +1,26 @@
+import React, { useEffect, useState } from 'react';
+import './App.css';
+
+function Effect() {
+  const [counter,setCounter]=useState(0)
+
+  useEffect(
+  ()=>{
+      return()=>{}
+  },[counter])
+
+  function update(){setCounter(counter=counter+1)}
+
+  return (
+    <>
+    <div>{counter}</div>
+    <button onClick={update}>Click</button>
+    </>
+  )
+}
+
+export default function App() {
+  return (
+        <Effect/>
+  );
+}
